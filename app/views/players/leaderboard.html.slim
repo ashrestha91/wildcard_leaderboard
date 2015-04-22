@@ -1,0 +1,40 @@
+.col-md-8
+  h2
+    | Cornhole
+  table.table.table-striped
+    thead
+      th
+        | Player
+      th
+        | Wins
+      th
+        | Losses
+    - @cornhole_leaderboard.each do |player|
+      tr
+        td
+          = player.name
+        td
+          = player.cornhole_wins
+        td
+          = player.cornhole_losses
+
+  h2
+    | Ping Pong
+  table.table.table-striped
+    thead
+      th
+        | Player
+      th
+        | Wins
+      th
+        | Losses
+    - @ping_pong_leaderboard.each do |player|
+      tr
+        td
+          = player.name
+        td
+          = player.ping_pong_wins
+        td
+          = player.ping_pong_losses
+
+  = link_to "Add Match", new_match_path, class: "btn btn-default"

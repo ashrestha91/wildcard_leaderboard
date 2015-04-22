@@ -1,0 +1,41 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="match-selectized">
+    <%= select_tag "match[game_type]", options_for_select([["Cornhole", "cornhole"], ["Ping Pong", "ping_pong"]]) %>
+  </div>
+
+  <div class="field match-selectized">
+    <%= f.label "Winners" %>
+    <%= f.collection_select :winners, @players, :id, :name, {:include_hidden => true}, multiple: true %>
+  </div>
+
+  <div class="field match-selectized">
+    <%= f.label "Winners' Score" %>
+    <%= f.number_field :winners_score %>
+  </div>
+
+  <div class="field match-selectized">
+    <%= f.label "Losers" %>
+    <%= f.collection_select :losers, @players, :id, :name, {:include_hidden => true}, multiple: true %>
+  </div>
+
+  <div class="field match-selectized">
+    <%= f.label "Losers' Score" %>
+    <%= f.number_field :losers_score %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
